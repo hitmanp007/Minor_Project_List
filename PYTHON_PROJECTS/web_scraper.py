@@ -50,6 +50,6 @@ def decode_secret_message(url):
         print("".join(row))
 
 
-url = "https://docs.google.com/document/d/e/2PACX-1vSvM5gDlNvt7npYHhp_XfsJvuntUhq184By5xO_pA4b_gCWeXb6dM6ZxwN8rE6S4ghUsCj2VKR21oEP/pub"
+url = "https://docs.google.com/document/d/e/2PACX-1vTGiOWO-6-AEZpK9Yi3aTkebfXRxmoqmE0tMaRIld99aNRXgRLnWjTsyBmenSl7sXfVfJ3vtpj5CYiG/pub"
 
 decode_secret_message(url)
