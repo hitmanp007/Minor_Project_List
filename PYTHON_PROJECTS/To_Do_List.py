@@ -13,7 +13,7 @@ root.geometry("650x650")
 root.resizable(False, False)
 
 
-background_image = Image.open("background.jpg")
+background_image = Image.open("C:/Users/pranav/Desktop/Minor_Projects/PYTHON_PROJECTS/background.jpg")
 background_image = background_image.resize((650, 650))
 
 background_photo = ImageTk.PhotoImage(background_image)
