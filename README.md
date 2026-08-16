@@ -614,3 +614,84 @@ The projects may later be upgraded using:
 However, the original beginner implementation will remain simple so that students can understand the fundamentals.
 
 ---
+
+# 🤝 Contributions
+
+This repository is primarily a learning project, but suggestions and improvements are welcome.
+
+If you find a bug or have an idea for improving a project:
+
+1. Open an issue.
+2. Explain the problem or suggestion.
+3. If possible, submit a pull request.
+4. Keep contributions beginner-friendly and understandable.
+
+---
+
+# 🌱 Project Goal
+
+The ultimate goal of this repository is not to collect 20 projects.
+
+The goal is to build **20 programming experiences**.
+
+By the end, you should be more comfortable with:
+
+```text
+Python
+  ↓
+Problem Solving
+  ↓
+Programming Logic
+  ↓
+Data Structures
+  ↓
+Functions
+  ↓
+OOP
+  ↓
+GUI
+  ↓
+Files & Data
+  ↓
+APIs
+  ↓
+Real-world Applications
+```
+
+---
+
+## ⭐ Progress
+
+* [x] 01 — Number Guessing Game
+* [x] 02 — Calculator
+* [x] 03 — Stone Paper Scissor
+* [ ] 04 — Banking System
+* [ ] 05 — Quiz Game
+* [ ] 06 — Password Generator
+* [ ] 07 — To-Do List
+* [ ] 08 — Contact Book
+* [ ] 09 — Expense Tracker
+* [ ] 10 — Countdown Timer
+* [ ] 11 — Library Management System
+* [ ] 12 — Employee Management System
+* [ ] 13 — Mini Akinator
+* [ ] 14 — File Organizer
+* [ ] 15 — Student Management System
+* [ ] 16 — CSV Data Analyzer
+* [ ] 17 — Weather Application
+* [ ] 18 — Web Scraper
+* [ ] 19 — News Application
+* [ ] 20 — Mini E-Commerce System
+
+---
+
+## 👨‍💻 Author
+
+**Pranav Sahu**
+
+A structured collection of small Python projects created to strengthen programming fundamentals through practice and experimentation.
+
+---
+
+⭐ If this repository helps you learn Python, consider giving it a star and sharing it with another beginner.
+
