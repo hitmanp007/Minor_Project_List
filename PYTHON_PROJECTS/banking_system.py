@@ -99,18 +99,73 @@ tk.Button(
 # REGISTER PAGE
 # -----------------------------
 
+# -----------------------------
+# REGISTER PAGE
+# -----------------------------
+
 tk.Label(
     register,
-    text="REGISTER",
-    font=("Arial", 20)
-).pack(pady=50)
+    text="CREATE ACCOUNT",
+    font=("Arial", 20, "bold")
+).pack(pady=20)
 
 
+
+
+# Form frame
+form = tk.Frame(register)
+form.pack(pady=10)
+
+
+# Name
+tk.Label(form, text="Name").grid(row=0, column=0, padx=10, pady=5)
+
+name_entry = tk.Entry(form)
+name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+
+# ID
+tk.Label(form, text="ID").grid(row=1, column=0, padx=10, pady=5)
+
+id_entry = tk.Entry(form)
+id_entry.grid(row=1, column=1, padx=10, pady=5)
+
+
+# Email
+tk.Label(form, text="Email").grid(row=2, column=0, padx=10, pady=5)
+
+email_entry = tk.Entry(form)
+email_entry.grid(row=2, column=1, padx=10, pady=5)
+
+
+# Mobile
+tk.Label(form, text="Mobile").grid(row=3, column=0, padx=10, pady=5)
+
+mobile_entry = tk.Entry(form)
+mobile_entry.grid(row=3, column=1, padx=10, pady=5)
+
+
+# Password
+tk.Label(form, text="Password").grid(row=4, column=0, padx=10, pady=5)
+
+password_entry = tk.Entry(form, show="*")
+password_entry.grid(row=4, column=1, padx=10, pady=5)
+
+# Submit button
 tk.Button(
     register,
-    text="Back",
+    text="SUBMIT",
     command=show_dash
-).pack()
+).pack(pady=10)
+
+# Back button
+tk.Button(
+    register,
+    text="BACK",
+    command=show_dash
+).pack(pady=10)
+
+
 
 
 # -----------------------------
