@@ -665,10 +665,10 @@ Real-world Applications
 * [x] 01 — Number Guessing Game
 * [x] 02 — Calculator
 * [x] 03 — Stone Paper Scissor
-* [ ] 04 — Banking System
+* [x] 04 — Banking System
 * [ ] 05 — Quiz Game
 * [ ] 06 — Password Generator
-* [ ] 07 — To-Do List
+* [x] 07 — To-Do List
 * [ ] 08 — Contact Book
 * [ ] 09 — Expense Tracker
 * [ ] 10 — Countdown Timer
