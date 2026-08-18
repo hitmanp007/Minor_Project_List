@@ -179,6 +179,29 @@ tk.Label(
 ).pack(pady=50)
 
 
+form = tk.Frame(login)
+form.pack(pady=10)
+
+tk.Label(form, text="Name").grid(row=0, column=0, padx=10, pady=5)
+
+name_entry = tk.Entry(form)
+name_entry.grid(row=0, column=1, padx=10, pady=5)
+
+
+# ID
+tk.Label(form, text="ID").grid(row=1, column=0, padx=10, pady=5)
+
+id_entry = tk.Entry(form)
+id_entry.grid(row=1, column=1, padx=10, pady=5)
+
+
+tk.Button(
+    login,
+    text="Submit",
+    command=show_dash
+).pack()
+
+
 tk.Button(
     login,
     text="Back",
