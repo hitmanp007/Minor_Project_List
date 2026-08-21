@@ -14,7 +14,10 @@ home_page = tk.Frame(root)
 dashboard = tk.Frame(root)
 register = tk.Frame(root)
 login = tk.Frame(root)
-
+bank = tk.Frame(root)
+deposit = tk.Frame(root)
+widrawl = tk.Frame(root)
+transaction = tk.Frame(root)
 
 # -----------------------------
 # Page switching functions
@@ -51,6 +54,14 @@ def show_login():
 
     login.pack()
 
+def show_bank():
+    home_page.pack_forget()
+    dashboard.pack_forget()
+    register.pack_forget()
+    login.pack_forget()
+
+    bank.pack()
+    
 
 # -----------------------------
 # HOME PAGE
@@ -198,7 +209,7 @@ id_entry.grid(row=1, column=1, padx=10, pady=5)
 tk.Button(
     login,
     text="Submit",
-    command=show_dash
+    command=show_bank
 ).pack()
 
 
@@ -208,6 +219,35 @@ tk.Button(
     command=show_dash
 ).pack()
 
+# -----------------------------
+# Bank Page
+# -----------------------------
+tk.Label(
+    bank,
+    text="Welcome",
+    font=("Arial", 20)
+).pack(pady=50)
+
+form = tk.Frame(bank)
+form.pack(pady=10)
+
+tk.Button(
+    bank,
+    text="Deposit",
+    command=show_bank
+).pack()
+
+tk.Button(
+    bank,
+    text="widrawl",
+    command=show_bank
+).pack()
+
+tk.Button(
+    bank,
+    text="Transaction",
+    command=show_bank
+).pack()
 
 # -----------------------------
 # Start with Home
