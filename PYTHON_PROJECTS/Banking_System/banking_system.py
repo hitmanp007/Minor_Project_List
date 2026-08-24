@@ -62,7 +62,33 @@ def show_bank():
 
     bank.pack()
     
+def show_deposite():
+    home_page.pack_forget()
+    dashboard.pack_forget()
+    register.pack_forget()
+    login.pack_forget()
+    bank.pack_forget()
 
+    deposit.pack()
+
+def show_widrawl():
+    home_page.pack_forget()
+    dashboard.pack_forget()
+    register.pack_forget()
+    login.pack_forget()
+    bank.pack_forget()
+
+    deposit.pack_forget()
+    widrawl.pack()
+
+def show_transaction():
+    home_page.pack_forget()
+    dashboard.pack_forget()
+    register.pack_forget()
+    login.pack_forget()
+    bank.pack_forget()
+
+    deposit.pack_forget()        
 # -----------------------------
 # HOME PAGE
 # -----------------------------
@@ -105,10 +131,6 @@ tk.Button(
     command=show_login
 ).pack(pady=5)
 
-
-# -----------------------------
-# REGISTER PAGE
-# -----------------------------
 
 # -----------------------------
 # REGISTER PAGE
