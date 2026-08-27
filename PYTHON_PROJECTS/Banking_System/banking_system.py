@@ -1,5 +1,19 @@
 import tkinter as tk
+from tkinter import messagebox
+
+
+# -----------------------------
+# STORAGE
+# -----------------------------
+
 accounts = {}
+
+current_user = None
+
+
+# -----------------------------
+# MAIN WINDOW
+# -----------------------------
 
 root = tk.Tk()
 root.title("Banking System")
@@ -7,7 +21,7 @@ root.geometry("300x400")
 
 
 # -----------------------------
-# Pages
+# PAGES
 # -----------------------------
 
 home_page = tk.Frame(root)
@@ -19,78 +33,81 @@ deposit = tk.Frame(root)
 widrawl = tk.Frame(root)
 transaction = tk.Frame(root)
 
+
 # -----------------------------
-# Page switching functions
+# PAGE SWITCHING
 # -----------------------------
 
-def show_home():
+def hide_all_pages():
+
+    home_page.pack_forget()
     dashboard.pack_forget()
     register.pack_forget()
     login.pack_forget()
+    bank.pack_forget()
+    deposit.pack_forget()
+    widrawl.pack_forget()
+    transaction.pack_forget()
 
+
+def show_home():
+    hide_all_pages()
     home_page.pack()
 
 
 def show_dash():
-    home_page.pack_forget()
-    register.pack_forget()
-    login.pack_forget()
-
+    hide_all_pages()
     dashboard.pack()
 
 
 def show_register():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    login.pack_forget()
-
+    hide_all_pages()
     register.pack()
 
 
 def show_login():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    register.pack_forget()
-
+    hide_all_pages()
     login.pack()
 
+
 def show_bank():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    register.pack_forget()
-    login.pack_forget()
+
+    hide_all_pages()
+
+    welcome_label.config(
+        text=f"Welcome, {accounts[current_user]['name']}"
+    )
+
+    balance_label.config(
+        text=f"Balance: ₹{accounts[current_user]['balance']}"
+    )
 
     bank.pack()
-    
+
+
 def show_deposite():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    register.pack_forget()
-    login.pack_forget()
-    bank.pack_forget()
+
+    hide_all_pages()
 
     deposit.pack()
 
-def show_widrawl():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    register.pack_forget()
-    login.pack_forget()
-    bank.pack_forget()
 
-    deposit.pack_forget()
+def show_widrawl():
+
+    hide_all_pages()
+
     widrawl.pack()
 
+
 def show_transaction():
-    home_page.pack_forget()
-    dashboard.pack_forget()
-    register.pack_forget()
-    login.pack_forget()
-    bank.pack_forget()
 
-    deposit.pack_forget()    
+    hide_all_pages()
 
-        
+    update_transactions()
+
+    transaction.pack()
+
+
 # -----------------------------
 # HOME PAGE
 # -----------------------------
@@ -135,8 +152,9 @@ tk.Button(
 
 
 # -----------------------------
-# REGISTER PAGE
+# CREATE ACCOUNT
 # -----------------------------
+
 def create_account():
 
     name = name_entry.get()
@@ -145,21 +163,58 @@ def create_account():
     mobile = mobile_entry.get()
     password = password_entry.get()
 
+    # Check empty fields
+    if name == "" or user_id == "" or email == "" or mobile == "" or password == "":
+
+        messagebox.showerror(
+            "Error",
+            "Please fill all fields!"
+        )
+
+        return
+
+
+    # Check duplicate ID
     if user_id in accounts:
-        print("Account already exists")
 
-    else:
-        accounts[user_id] = {
-            "name": name,
-            "id" : id,
-            "email": email,
-            "mobile": mobile,
-            "password": password
-        }
+        messagebox.showerror(
+            "Error",
+            "Account already exists!"
+        )
 
-        print("Account created successfully!")
+        return
 
-        show_dash()
+
+    # Create account
+    accounts[user_id] = {
+
+        "name": name,
+        "email": email,
+        "mobile": mobile,
+        "password": password,
+
+        "balance": 0,
+
+        "transactions": []
+    }
+
+
+    messagebox.showinfo(
+        "Success",
+        "Account created successfully!"
+    )
+
+
+    # Clear fields
+    name_entry.delete(0, tk.END)
+    id_entry.delete(0, tk.END)
+    email_entry.delete(0, tk.END)
+    mobile_entry.delete(0, tk.END)
+    password_entry.delete(0, tk.END)
+
+
+    show_dash()
+
 
 tk.Label(
     register,
@@ -168,69 +223,156 @@ tk.Label(
 ).pack(pady=20)
 
 
-
-
-# Form frame
-form = tk.Frame(register)
-form.pack(pady=10)
+register_form = tk.Frame(register)
+register_form.pack(pady=10)
 
 
 # Name
-tk.Label(form, text="Name").grid(row=0, column=0, padx=10, pady=5)
 
-name_entry = tk.Entry(form)
-name_entry.grid(row=0, column=1, padx=10, pady=5)
+tk.Label(
+    register_form,
+    text="Name"
+).grid(row=0, column=0, padx=10, pady=5)
+
+
+name_entry = tk.Entry(register_form)
+
+name_entry.grid(
+    row=0,
+    column=1,
+    padx=10,
+    pady=5
+)
 
 
 # ID
-tk.Label(form, text="ID").grid(row=1, column=0, padx=10, pady=5)
 
-id_entry = tk.Entry(form)
-id_entry.grid(row=1, column=1, padx=10, pady=5)
+tk.Label(
+    register_form,
+    text="ID"
+).grid(row=1, column=0, padx=10, pady=5)
+
+
+id_entry = tk.Entry(register_form)
+
+id_entry.grid(
+    row=1,
+    column=1,
+    padx=10,
+    pady=5
+)
 
 
 # Email
-tk.Label(form, text="Email").grid(row=2, column=0, padx=10, pady=5)
 
-email_entry = tk.Entry(form)
-email_entry.grid(row=2, column=1, padx=10, pady=5)
+tk.Label(
+    register_form,
+    text="Email"
+).grid(row=2, column=0, padx=10, pady=5)
+
+
+email_entry = tk.Entry(register_form)
+
+email_entry.grid(
+    row=2,
+    column=1,
+    padx=10,
+    pady=5
+)
 
 
 # Mobile
-tk.Label(form, text="Mobile").grid(row=3, column=0, padx=10, pady=5)
 
-mobile_entry = tk.Entry(form)
-mobile_entry.grid(row=3, column=1, padx=10, pady=5)
+tk.Label(
+    register_form,
+    text="Mobile"
+).grid(row=3, column=0, padx=10, pady=5)
+
+
+mobile_entry = tk.Entry(register_form)
+
+mobile_entry.grid(
+    row=3,
+    column=1,
+    padx=10,
+    pady=5
+)
 
 
 # Password
-tk.Label(form, text="Password").grid(row=4, column=0, padx=10, pady=5)
 
-password_entry = tk.Entry(form, show="*")
-password_entry.grid(row=4, column=1, padx=10, pady=5)
+tk.Label(
+    register_form,
+    text="Password"
+).grid(row=4, column=0, padx=10, pady=5)
 
-# Submit button
+
+password_entry = tk.Entry(
+    register_form,
+    show="*"
+)
+
+password_entry.grid(
+    row=4,
+    column=1,
+    padx=10,
+    pady=5
+)
+
+
 tk.Button(
     register,
     text="SUBMIT",
     command=create_account
 ).pack(pady=10)
 
-# Back button
+
 tk.Button(
     register,
     text="BACK",
     command=show_dash
-).pack(pady=10)
-
-
+).pack()
 
 
 # -----------------------------
 # LOGIN PAGE
 # -----------------------------
-login_form = tk.Frame(login)
-login_form.pack(pady=10)
+
+def check_login():
+
+    global current_user
+
+    user_id = login_id_entry.get()
+    password = login_password_entry.get()
+
+
+    if user_id in accounts:
+
+        if accounts[user_id]["password"] == password:
+
+            current_user = user_id
+
+            messagebox.showinfo(
+                "Success",
+                "Login successful!"
+            )
+
+            show_bank()
+
+        else:
+
+            messagebox.showerror(
+                "Error",
+                "Wrong password!"
+            )
+
+    else:
+
+        messagebox.showerror(
+            "Error",
+            "Account does not exist!"
+        )
+
 
 tk.Label(
     login,
@@ -238,32 +380,16 @@ tk.Label(
     font=("Arial", 20)
 ).pack(pady=50)
 
-def check_login():
 
-    user_id = login_id_entry.get()
-    password = login_password_entry.get()
-
-    if user_id in accounts:
-
-        if accounts[user_id]["password"] == password:
-
-            print("Login successful!")
-
-            show_bank()
-
-        else:
-
-            print("Wrong password!")
-
-    else:
-
-        print("Account does not exist!")
+login_form = tk.Frame(login)
+login_form.pack(pady=10)
 
 
 tk.Label(
     login_form,
     text="ID"
 ).grid(row=0, column=0, padx=10, pady=5)
+
 
 login_id_entry = tk.Entry(login_form)
 
@@ -280,6 +406,7 @@ tk.Label(
     text="Password"
 ).grid(row=1, column=0, padx=10, pady=5)
 
+
 login_password_entry = tk.Entry(
     login_form,
     show="*"
@@ -292,11 +419,12 @@ login_password_entry.grid(
     pady=5
 )
 
+
 tk.Button(
     login,
     text="Submit",
     command=check_login
-).pack()
+).pack(pady=5)
 
 
 tk.Button(
@@ -305,41 +433,281 @@ tk.Button(
     command=show_dash
 ).pack()
 
+
 # -----------------------------
-# Bank Page
+# BANK PAGE
 # -----------------------------
-tk.Label(
+
+welcome_label = tk.Label(
     bank,
     text="Welcome",
     font=("Arial", 20)
-).pack(pady=50)
+)
 
-form = tk.Frame(bank)
-form.pack(pady=10)
+welcome_label.pack(pady=30)
+
+
+balance_label = tk.Label(
+    bank,
+    text="Balance: ₹0",
+    font=("Arial", 15)
+)
+
+balance_label.pack(pady=10)
+
 
 tk.Button(
     bank,
     text="Deposit",
-    command=show_bank
-).pack()
+    command=show_deposite
+).pack(pady=5)
+
 
 tk.Button(
     bank,
-    text="widrawl",
-    command=show_bank
-).pack()
+    text="Withdraw",
+    command=show_widrawl
+).pack(pady=5)
+
 
 tk.Button(
     bank,
-    text="Transaction",
-    command=show_bank
-).pack()
+    text="Transaction History",
+    command=show_transaction
+).pack(pady=5)
+
+
+tk.Button(
+    bank,
+    text="Logout",
+    command=show_dash
+).pack(pady=20)
+
 
 # -----------------------------
-# Start with Home
+# DEPOSIT PAGE
+# -----------------------------
+
+def add_money():
+
+    try:
+
+        amount = float(deposit_entry.get())
+
+        if amount <= 0:
+
+            messagebox.showerror(
+                "Error",
+                "Enter a valid amount!"
+            )
+
+            return
+
+
+        accounts[current_user]["balance"] += amount
+
+
+        accounts[current_user]["transactions"].append(
+            f"Deposited ₹{amount}"
+        )
+
+
+        deposit_entry.delete(0, tk.END)
+
+
+        messagebox.showinfo(
+            "Success",
+            f"₹{amount} deposited successfully!"
+        )
+
+
+        show_bank()
+
+
+    except ValueError:
+
+        messagebox.showerror(
+            "Error",
+            "Please enter numbers only!"
+        )
+
+
+tk.Label(
+    deposit,
+    text="DEPOSIT MONEY",
+    font=("Arial", 20)
+).pack(pady=50)
+
+
+deposit_entry = tk.Entry(
+    deposit,
+    font=("Arial", 15)
+)
+
+deposit_entry.pack(pady=10)
+
+
+tk.Button(
+    deposit,
+    text="Deposit",
+    command=add_money
+).pack(pady=5)
+
+
+tk.Button(
+    deposit,
+    text="Back",
+    command=show_bank
+).pack()
+
+
+# -----------------------------
+# WITHDRAW PAGE
+# -----------------------------
+
+def withdraw_money():
+
+    try:
+
+        amount = float(withdraw_entry.get())
+
+
+        if amount <= 0:
+
+            messagebox.showerror(
+                "Error",
+                "Enter a valid amount!"
+            )
+
+            return
+
+
+        if amount > accounts[current_user]["balance"]:
+
+            messagebox.showerror(
+                "Error",
+                "Insufficient balance!"
+            )
+
+            return
+
+
+        accounts[current_user]["balance"] -= amount
+
+
+        accounts[current_user]["transactions"].append(
+            f"Withdrawn ₹{amount}"
+        )
+
+
+        withdraw_entry.delete(0, tk.END)
+
+
+        messagebox.showinfo(
+            "Success",
+            f"₹{amount} withdrawn successfully!"
+        )
+
+
+        show_bank()
+
+
+    except ValueError:
+
+        messagebox.showerror(
+            "Error",
+            "Please enter numbers only!"
+        )
+
+
+tk.Label(
+    widrawl,
+    text="WITHDRAW MONEY",
+    font=("Arial", 20)
+).pack(pady=50)
+
+
+withdraw_entry = tk.Entry(
+    widrawl,
+    font=("Arial", 15)
+)
+
+withdraw_entry.pack(pady=10)
+
+
+tk.Button(
+    widrawl,
+    text="Withdraw",
+    command=withdraw_money
+).pack(pady=5)
+
+
+tk.Button(
+    widrawl,
+    text="Back",
+    command=show_bank
+).pack()
+
+
+# -----------------------------
+# TRANSACTION PAGE
+# -----------------------------
+
+def update_transactions():
+
+    transaction_text.delete(
+        "1.0",
+        tk.END
+    )
+
+
+    transactions = accounts[current_user]["transactions"]
+
+
+    if len(transactions) == 0:
+
+        transaction_text.insert(
+            tk.END,
+            "No transactions yet."
+        )
+
+    else:
+
+        for item in transactions:
+
+            transaction_text.insert(
+                tk.END,
+                item + "\n"
+            )
+
+
+tk.Label(
+    transaction,
+    text="TRANSACTION HISTORY",
+    font=("Arial", 16)
+).pack(pady=20)
+
+
+transaction_text = tk.Text(
+    transaction,
+    width=30,
+    height=12
+)
+
+transaction_text.pack(pady=10)
+
+
+tk.Button(
+    transaction,
+    text="Back",
+    command=show_bank
+).pack()
+
+
+# -----------------------------
+# START APPLICATION
 # -----------------------------
 
 home_page.pack()
-
 
 root.mainloop()
