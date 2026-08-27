@@ -1,5 +1,5 @@
 import tkinter as tk
-
+accounts = {}
 
 root = tk.Tk()
 root.title("Banking System")
@@ -88,7 +88,9 @@ def show_transaction():
     login.pack_forget()
     bank.pack_forget()
 
-    deposit.pack_forget()        
+    deposit.pack_forget()    
+
+        
 # -----------------------------
 # HOME PAGE
 # -----------------------------
@@ -135,6 +137,29 @@ tk.Button(
 # -----------------------------
 # REGISTER PAGE
 # -----------------------------
+def create_account():
+
+    name = name_entry.get()
+    user_id = id_entry.get()
+    email = email_entry.get()
+    mobile = mobile_entry.get()
+    password = password_entry.get()
+
+    if user_id in accounts:
+        print("Account already exists")
+
+    else:
+        accounts[user_id] = {
+            "name": name,
+            "id" : id,
+            "email": email,
+            "mobile": mobile,
+            "password": password
+        }
+
+        print("Account created successfully!")
+
+        show_dash()
 
 tk.Label(
     register,
@@ -188,7 +213,7 @@ password_entry.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(
     register,
     text="SUBMIT",
-    command=show_dash
+    command=create_account
 ).pack(pady=10)
 
 # Back button
@@ -204,6 +229,8 @@ tk.Button(
 # -----------------------------
 # LOGIN PAGE
 # -----------------------------
+login_form = tk.Frame(login)
+login_form.pack(pady=10)
 
 tk.Label(
     login,
@@ -211,27 +238,64 @@ tk.Label(
     font=("Arial", 20)
 ).pack(pady=50)
 
+def check_login():
 
-form = tk.Frame(login)
-form.pack(pady=10)
+    user_id = login_id_entry.get()
+    password = login_password_entry.get()
 
-tk.Label(form, text="Id").grid(row=0, column=0, padx=10, pady=5)
+    if user_id in accounts:
 
-name_entry = tk.Entry(form)
-name_entry.grid(row=0, column=1, padx=10, pady=5)
+        if accounts[user_id]["password"] == password:
+
+            print("Login successful!")
+
+            show_bank()
+
+        else:
+
+            print("Wrong password!")
+
+    else:
+
+        print("Account does not exist!")
 
 
-# ID
-tk.Label(form, text="Password").grid(row=1, column=0, padx=10, pady=5)
+tk.Label(
+    login_form,
+    text="ID"
+).grid(row=0, column=0, padx=10, pady=5)
 
-id_entry = tk.Entry(form)
-id_entry.grid(row=1, column=1, padx=10, pady=5)
+login_id_entry = tk.Entry(login_form)
 
+login_id_entry.grid(
+    row=0,
+    column=1,
+    padx=10,
+    pady=5
+)
+
+
+tk.Label(
+    login_form,
+    text="Password"
+).grid(row=1, column=0, padx=10, pady=5)
+
+login_password_entry = tk.Entry(
+    login_form,
+    show="*"
+)
+
+login_password_entry.grid(
+    row=1,
+    column=1,
+    padx=10,
+    pady=5
+)
 
 tk.Button(
     login,
     text="Submit",
-    command=show_bank
+    command=check_login
 ).pack()
 
 
