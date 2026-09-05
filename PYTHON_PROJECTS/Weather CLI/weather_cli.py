@@ -54,10 +54,7 @@ def get_weather():
 
     result = requests.get(url).json()
 
-    temperature = result["main"]["temp"]
-
-    print("Temperature:", temperature)
-
+    print(result)
 
 button = Button(
     root,
