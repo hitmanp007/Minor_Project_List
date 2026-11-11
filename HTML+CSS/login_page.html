@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Workspace</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f4f6fa;
+            padding: 20px;
+            color: #202938;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 42px;
+            border-radius: 16px;
+            box-shadow: 0 12px 45px rgba(20, 35, 60, 0.07);
+            animation: appear 0.6s ease;
+        }
+
+        /* LOGO */
+        .logo {
+            width: 46px;
+            height: 46px;
+            background: #315efb;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 28px;
+        }
+
+        /* HEADING */
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 9px;
+            letter-spacing: -0.8px;
+        }
+
+        .subtitle {
+            color: #7a8495;
+            font-size: 14px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* INPUT GROUP */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 9px;
+            color: #344054;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dfe3eb;
+            border-radius: 9px;
+            font-size: 14px;
+            outline: none;
+            color: #202938;
+            background: #ffffff;
+            transition: all 0.25s ease;
+        }
+
+        .input-group input::placeholder {
+            color: #a4acb9;
+        }
+
+        .input-group input:hover {
+            border-color: #aab7d1;
+        }
+
+        .input-group input:focus {
+            border-color: #315efb;
+            box-shadow: 0 0 0 3px rgba(49, 94, 251, 0.12);
+        }
+
+        /* OPTIONS */
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0 25px;
+            font-size: 13px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #596579;
+            cursor: pointer;
+        }
+
+        .remember input {
+            accent-color: #315efb;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #315efb;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: #173dc4;
+            text-decoration: underline;
+        }
+
+        /* LOGIN BUTTON */
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #315efb;
+            border: none;
+            border-radius: 9px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .login-btn:hover {
+            background: #244bd6;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(49, 94, 251, 0.23);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-btn:focus-visible,
+        a:focus-visible {
+            outline: 3px solid rgba(49, 94, 251, 0.35);
+            outline-offset: 3px;
+        }
+
+        /* DIVIDER */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 26px 0;
+            color: #a0a8b5;
+            font-size: 12px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #e9ecf2;
+        }
+
+        /* FOOTER */
+        .signup {
+            text-align: center;
+            color: #7a8495;
+            font-size: 13px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 11px;
+            color: #a0a8b5;
+        }
+
+        /* ANIMATION */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 23px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+        <div class="logo">W</div>
+
+        <h1>Welcome back</h1>
+
+        <p class="subtitle">
+            Enter your details to access your workspace.
+        </p>
+
+        <form action="#" method="post">
+
+            <div class="input-group">
+                <label for="email">Email address</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    Remember me
+                </label>
+
+                <a href="#">Forgot password?</a>
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                Sign in
+            </button>
+
+        </form>
+
+        <div class="divider">OR</div>
+
+        <p class="signup">
+            Don't have an account?
+            <a href="#">Create account</a>
+        </p>
+
+        <div class="footer">
+            © 2026 Workspace. All rights reserved.
+        </div>
+
+    </main>
+
+</body>
+</html>
