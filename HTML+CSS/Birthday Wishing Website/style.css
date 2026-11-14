@@ -1,0 +1,493 @@
+
+/* ==========================
+   GLOBAL STYLES
+========================== */
+
+:root {
+    --pink: #e8a5b8;
+    --dark-pink: #bd6f91;
+    --lavender: #c6b5e5;
+    --cream: #fffaf5;
+    --dark: #4b3447;
+    --gold: #d5a957;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background:
+        radial-gradient(circle at 15% 20%, #f8dce8, transparent 35%),
+        radial-gradient(circle at 85% 80%, #e4d9f5, transparent 35%),
+        #fff7f2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 50px 20px;
+    overflow-x: hidden;
+    color: var(--dark);
+}
+
+
+/* ==========================
+   BACKGROUND DECORATIONS
+========================== */
+
+.background-decoration {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.balloon {
+    position: absolute;
+    font-size: 55px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.balloon-one {
+    top: 12%;
+    left: 7%;
+}
+
+.balloon-two {
+    top: 22%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.balloon-three {
+    bottom: 15%;
+    left: 12%;
+    animation-delay: 2s;
+}
+
+.balloon-four {
+    bottom: 12%;
+    right: 10%;
+    animation-delay: 1.5s;
+}
+
+.star {
+    position: absolute;
+    color: var(--gold);
+    font-size: 30px;
+    animation: twinkle 2s infinite alternate;
+}
+
+.star-one {
+    top: 15%;
+    left: 35%;
+}
+
+.star-two {
+    top: 35%;
+    right: 20%;
+    animation-delay: 0.5s;
+}
+
+.star-three {
+    bottom: 20%;
+    left: 35%;
+    animation-delay: 1s;
+}
+
+.star-four {
+    bottom: 35%;
+    right: 35%;
+    animation-delay: 1.5s;
+}
+
+
+/* ==========================
+   MAIN CARD
+========================== */
+
+.birthday-container {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 760px;
+
+    padding: 55px 65px;
+
+    background: rgba(255, 250, 245, 0.94);
+
+    border: 1px solid #ffffff;
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 70px rgba(135, 85, 112, 0.12);
+
+    animation: appear 1s ease;
+}
+
+
+/* ==========================
+   TOP LABEL
+========================== */
+
+.top-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    color: var(--dark-pink);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.top-label span {
+    color: var(--gold);
+    font-size: 16px;
+}
+
+
+/* ==========================
+   CAKE SECTION
+========================== */
+
+.cake-area {
+    position: relative;
+    margin: 35px auto 25px;
+    width: fit-content;
+}
+
+.cake-emoji {
+    font-size: 100px;
+    animation: cakeBounce 3s ease-in-out infinite;
+}
+
+.cake-sparkle {
+    position: absolute;
+    color: var(--gold);
+    font-size: 25px;
+}
+
+.sparkle-one {
+    top: 10px;
+    left: -25px;
+}
+
+.sparkle-two {
+    top: 30px;
+    right: -30px;
+}
+
+.sparkle-three {
+    bottom: 10px;
+    right: -15px;
+}
+
+
+/* ==========================
+   MAIN HEADING
+========================== */
+
+.small-heading {
+    color: var(--dark-pink);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+}
+
+.birthday-message h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(35px, 6vw, 55px);
+    line-height: 1.2;
+    color: var(--dark);
+}
+
+.name {
+    display: block;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.25em;
+    color: var(--dark-pink);
+    margin-top: 5px;
+}
+
+.subtitle {
+    max-width: 470px;
+    margin: 20px auto 30px;
+
+    color: #8b7987;
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+
+/* ==========================
+   WISH CARD
+========================== */
+
+.wish-card {
+    position: relative;
+
+    background: #f8edf1;
+    border: 1px solid #f0dce5;
+    border-radius: 15px;
+
+    padding: 30px 35px;
+    margin: 30px 0;
+}
+
+.quote-icon {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 50px;
+    line-height: 0.7;
+    color: var(--pink);
+}
+
+.wish-card p {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    line-height: 1.9;
+    color: #715a6c;
+    margin: 15px 0 20px;
+}
+
+.wish-footer {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--dark-pink);
+}
+
+
+/* ==========================
+   CELEBRATION DETAILS
+========================== */
+
+.celebration-details {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 35px 0;
+}
+
+.detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+}
+
+.detail span {
+    font-size: 25px;
+}
+
+.detail p {
+    color: #8b7987;
+    font-size: 11px;
+}
+
+
+/* ==========================
+   CELEBRATION BUTTON
+========================== */
+
+.celebrate-btn {
+    display: inline-block;
+
+    background: linear-gradient(
+        135deg,
+        #c87e9c,
+        #a86f9f
+    );
+
+    color: white;
+    padding: 15px 35px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+
+    box-shadow: 0 7px 20px rgba(168, 111, 159, 0.22);
+
+    transition: all 0.3s ease;
+}
+
+.celebrate-btn:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 25px rgba(168, 111, 159, 0.3);
+}
+
+
+/* ==========================
+   FINAL MESSAGE
+========================== */
+
+.final-message {
+    padding-top: 45px;
+    margin-top: 40px;
+    border-top: 1px dashed #e8cbd8;
+    scroll-margin-top: 25px;
+}
+
+.final-message p {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: var(--dark-pink);
+    margin-bottom: 10px;
+}
+
+.final-message h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--dark);
+}
+
+.hearts {
+    color: var(--dark-pink);
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer {
+    margin-top: 45px;
+    color: #b09aaa;
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(5deg);
+    }
+}
+
+@keyframes twinkle {
+    from {
+        opacity: 0.35;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes cakeBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ==========================
+   MOBILE RESPONSIVE
+========================== */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 25px 14px;
+    }
+
+    .birthday-container {
+        padding: 38px 22px;
+        border-radius: 20px;
+    }
+
+    .top-label {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .cake-emoji {
+        font-size: 75px;
+    }
+
+    .wish-card {
+        padding: 25px 18px;
+    }
+
+    .wish-card p {
+        font-size: 14px;
+    }
+
+    .celebration-details {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .detail {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .balloon {
+        font-size: 35px;
+    }
+
+    .final-message h2 {
+        font-size: 17px;
+    }
+}
+
+
+/* Reduce motion for accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
